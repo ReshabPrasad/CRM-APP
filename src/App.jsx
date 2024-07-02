@@ -5,9 +5,9 @@ function App() {
 
 
   return (
-    <>
-      CRM_APP
-    </>
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
   )
 }
 
