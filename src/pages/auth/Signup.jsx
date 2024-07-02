@@ -28,6 +28,6 @@ function Signup(){
                 </div>
             </div>
         </div>
-    )
+    );
 }
-export default Signup
+export default Signup;
