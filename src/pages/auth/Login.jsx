@@ -1,23 +1,36 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {login} from '../../Redux/Slices/AuthSlice';
 function Login(){
 
 
     const dispatch=useDispatch();
+    const navigate = useNavigate();
 
     const [logindetails,setlogindetails] = useState({
         email:"",
         password:""
     });
 
+
+    function resetlogindetails(){
+        setlogindetails({
+            email:"",
+            password:""
+        });
+    }
     
-    function onSubmit(){
+    async function onSubmit(){
         if(!logindetails.email || !logindetails.password)return;
         console.log(logindetails);
-        const response = dispatch(login(logindetails));
-        console.log(response);
+        const response = await dispatch(login(logindetails));
+        if(response.payload) navigate("/");
+        else {
+            resetlogindetails();
+        }
     }
 
 
@@ -62,6 +75,9 @@ function Login(){
                         <button onClick={onSubmit} className="btn btn-warning w-full font-bold text-xl">SUBMIT</button>
                     </div>
                     </div>
+                    <p className="text-l text-white">
+                        Already have an account ? <Link className="text-yellow-200 font-semibold hover:text-white" to="/signup">Signup Instead</Link>
+                    </p>
                 </div>
             </div>
         </div>
