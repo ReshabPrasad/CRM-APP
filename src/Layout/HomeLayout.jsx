@@ -17,6 +17,7 @@ function HomeLayout({children}){
     useEffect(() => {
         if(!authState.isLoggedIn)navigate("/login");
     },[]);
+
     return (
         <div className="min-h-[90vh]">
             <div className="drawer absolute left-0 right-0 cursor-pointer mt-4 ml-4">
@@ -32,8 +33,8 @@ function HomeLayout({children}){
                 <div className="drawer-side">
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                    <li><a>View All Tickets</a></li>
-                    <li><a>Dashboard</a></li>
+                    <li><Link to = "/">Home</Link></li>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
 
                     <li className="absolute bottom-8 w-3/4">
                         <div className="w-full flex justify-center items-center gap-16">
