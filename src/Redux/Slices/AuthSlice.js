@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 import axiosInstance from "../../config/axiosInstance";
 
@@ -12,18 +13,31 @@ const initialState = {
 
 export const login = createAsyncThunk('/auth/login',async(data) =>{
     try {
-        const response = await axiosInstance.post('auth/signin',data);
-        return response;
+        const response =  axiosInstance.post('auth/signin',data);
+        toast.promise(response,{
+            loading:"Submitting form",
+            success:"Successfully signedin",
+            error:"Something went wrong Please try again"
+        });
+        return await response;
     } catch (error) {
         console.log(error);
     }
 });
 
 
+
+
+
 export const signup = createAsyncThunk('/auth/signup',async(data) =>{
     try {
-        const response = await axiosInstance.post('auth/signup',data);
-        return response;
+        const response =  axiosInstance.post('auth/signup',data);
+        toast.promise(response,{
+            loading:"Submitting form",
+            success:"Successfully signedup",
+            error:"Something went wrong Please try again"
+        });
+        return await response;
     } catch (error) {
         console.log(error);
     }
@@ -33,7 +47,16 @@ export const signup = createAsyncThunk('/auth/signup',async(data) =>{
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers:{},
+    reducers:{
+        logout:(state) =>{
+            localStorage.clear(),
+            state.role= '',
+            state.token='',
+            state.isLoggedIn=false,
+            state.data=undefined;
+
+        }
+    },
     extraReducers: (builder) => {
         builder
         .addCase(login.fulfilled, (state, action) => {
@@ -51,4 +74,6 @@ const authSlice = createSlice({
     }
 });
 
+
+export const {logout} = authSlice.actions;
 export default authSlice.reducer;
