@@ -15,7 +15,7 @@ function HomeLayout({children}){
     }
 
     useEffect(() => {
-        if(!authState.isLoggedIn)navigate("/login")
+        if(!authState.isLoggedIn)navigate("/login");
     },[]);
     return (
         <div className="min-h-[90vh]">
@@ -55,7 +55,7 @@ function HomeLayout({children}){
             </div>
             
             <div className="flex justify-center items-start">
-                <div className="w-3/4">
+                <div className="w-3/5">
                     {children}
                 </div>
             </div>

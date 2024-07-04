@@ -54,6 +54,7 @@ const authSlice = createSlice({
             state.token='',
             state.isLoggedIn=false,
             state.data=undefined;
+            
 
         }
     },
