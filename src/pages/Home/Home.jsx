@@ -18,7 +18,7 @@ function Home(){
        <HomeLayout>
         {ticketState && (<div className="mt-10 flex  flex-row justify-center gap-6 items-center flex-wrap">
             <Card 
-                status={(ticketState.ticketDistribution.open/ticketState.ticketlist.length)}
+                status={(ticketState.ticketDistribution.open/ticketState.downloadedTickets.length)}
                 quantity={ticketState.ticketDistribution.open}
                 titleText="Open" 
                 background='bg-yellow-300' 
@@ -28,7 +28,7 @@ function Home(){
                 <BsFillPencilFill className='inline mr-2' />
             </Card> 
             <Card 
-                status={(ticketState.ticketDistribution.inProgress/ticketState.ticketlist.length)}
+                status={(ticketState.ticketDistribution.inProgress/ticketState.downloadedTickets.length)}
                 quantity={ticketState.ticketDistribution.inProgress}
                 titleText="In Progress" 
                 background='bg-orange-300' 
@@ -38,7 +38,7 @@ function Home(){
                 <TbProgress className='inline mr-2' />
             </Card> 
             <Card 
-                status={(ticketState.ticketDistribution.resolved/ticketState.ticketlist.length)}
+                status={(ticketState.ticketDistribution.resolved/ticketState.downloadedTickets.length)}
                 quantity={ticketState.ticketDistribution.resolved}
                 titleText="Resolved" 
                 background='bg-purple-300' 
@@ -48,7 +48,7 @@ function Home(){
                 <MdOutlineDoneAll className='inline mr-2' />
             </Card> 
             <Card 
-                status={(ticketState.ticketDistribution.cancelled/ticketState.ticketlist.length)}
+                status={(ticketState.ticketDistribution.cancelled/ticketState.downloadedTickets.length)}
                 quantity={ticketState.ticketDistribution.cancelled} 
                 titleText="Cancelled" 
                 background='bg-blue-300' 
@@ -58,7 +58,7 @@ function Home(){
                 <MdCancel className='inline mr-2' />
             </Card> 
             <Card 
-                status={(ticketState.ticketDistribution.onHold/ticketState.ticketlist.length)}
+                status={(ticketState.ticketDistribution.onHold/ticketState.downloadedTickets.length)}
                 quantity={ticketState.ticketDistribution.onHold} 
                 titleText="On Hold" 
                 background='bg-gray-300' 

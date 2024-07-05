@@ -1,24 +1,30 @@
+
+
 import useTickets from "../Hooks/UseTickets";
 import HomeLayout from "../Layout/HomeLayout";
+
 
 function Dashboard() {
 
     const [ticketState] = useTickets();
+
+    
+
 
     return (
         <HomeLayout>
             <div className="min-h-[90vh] flex flex-col items-center justify-center gap-2">
 
                 <div className="bg-yellow-500 w-full text-black text-center text-3xl py-4 font-bold hover:bg-yellow-400 transition-all ease-in-out duration-300">
-                    Tickets Records
+                Tickets Records 
                 </div>
 
                 {/* Table */}
 
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full" >
 
                     {/* Title row */}
-                    <div className="flex text-white font-bold justify-between items-center gap-3 bg-purple-600 px-2 py-2 grid-cols-7">
+                    <div className="flex text-white font-bold justify-between items-center gap-3 bg-purple-600 px-2 py-2 grid-cols-7" >
                         <div className="table-title basis-[8%] justify-start">
                             Ticket Id
                         </div>
@@ -45,7 +51,7 @@ function Dashboard() {
                     {/* ticket details */}
                     {ticketState && ticketState.ticketlist.map(ticket => {
                         return (
-                            <div key={ticket._id} className="my-4 py-2 font-normal text-sm flex justify-between items-center gap-3 bg-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300 text-black px-2 py-2 grid-cols-7">
+                            <div key={ticket._id} className="my-4  font-normal text-sm flex justify-between items-center gap-3 bg-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300 text-black px-2 py-2 grid-cols-7">
                                 <div className="table-title basis-[8%] justify-start">
                                     {ticket._id.substring(0, 5)+".."}
                                 </div>
@@ -76,4 +82,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard
+export default Dashboard;
