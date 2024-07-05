@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { logout } from '../Redux/Slices/AuthSlice';
-
+import { loadTickets } from '../Redux/Slices/TicketSlice';
 function HomeLayout({children}){
     const authState = useSelector((state) => state.auth);
     const dispatch =useDispatch();
     const navigate = useNavigate();
     function onLogout(){
         dispatch(logout());
+        dispatch(loadTickets());
         navigate("/login");
     }
 
@@ -56,7 +57,7 @@ function HomeLayout({children}){
             </div>
             
             <div className="flex justify-center items-start">
-                <div className="w-3/5">
+                <div className="w-8/12">
                     {children}
                 </div>
             </div>

@@ -1,12 +1,82 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 
+
+import DataTable from 'react-data-table-component';
 
 import useTickets from "../Hooks/UseTickets";
 import HomeLayout from "../Layout/HomeLayout";
+
+const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
 
 
 function Dashboard() {
 
     const [ticketState] = useTickets();
+
+
+    const columns = [
+        {
+            name: 'Ticket Id',
+            selector: row => row._id,
+            reorder: true,
+        },
+        {
+            name: 'Title',
+            selector: row => row.title,
+            reorder: true,
+        },
+        {
+            name: 'Description',
+            selector: row => row.description,
+            reorder: true,
+        },
+        {
+            name: 'Reporter',
+            selector: row => row.assignedTo,
+            reorder: true,
+        },
+        {
+            name: 'Priority',
+            selector: row => row.ticketPriority,
+            reorder: true,
+            sortable: true,
+        },
+        {
+            name: 'Assignee',
+            selector: row => row.assignee,
+            reorder: true,
+        },
+        {
+            name: 'Status',
+            selector: row => row.status,
+            reorder: true,
+            sortable: true,
+
+        }
+    ];
+
+    const customStyles = {
+        rows: {
+            style: {
+                minHeight: '72px', // override the row height
+                fontSize: '15px'
+            },
+        },
+        headCells: {
+            style: {
+                paddingLeft: '8px', // override the cell padding for head cells
+                paddingRight: '8px',
+            },
+        },
+        cells: {
+            style: {
+                paddingLeft: '8px', // override the cell padding for data cells
+                paddingRight: '8px',
+            },
+        },
+    };
+
+      
 
     
 
@@ -20,62 +90,15 @@ function Dashboard() {
                 </div>
 
                 {/* Table */}
-
-                <div className="flex flex-col w-full" >
-
-                    {/* Title row */}
-                    <div className="flex text-white font-bold justify-between items-center gap-3 bg-purple-600 px-2 py-2 grid-cols-7" >
-                        <div className="table-title basis-[8%] justify-start">
-                            Ticket Id
-                        </div>
-                        <div className="table-title basis-[12%]">
-                            Title
-                        </div>
-                        <div className="table-title basis-[20%]">
-                            Description
-                        </div>
-                        <div className="table-title basis-[20%]">
-                            Reporter
-                        </div>
-                        <div className="table-title basis-[5%]">
-                            Priority
-                        </div>
-                        <div className="table-title basis-[22%]">
-                            Assignee
-                        </div>
-                        <div className="table-title basis-[13%] justify-end mr-4">
-                            Status
-                        </div>
-                    </div>
-
-                    {/* ticket details */}
-                    {ticketState && ticketState.ticketlist.map(ticket => {
-                        return (
-                            <div key={ticket._id} className="my-4  font-normal text-sm flex justify-between items-center gap-3 bg-gray-100 hover:bg-gray-400 transition-all ease-in-out duration-300 text-black px-2 py-2 grid-cols-7">
-                                <div className="table-title basis-[8%] justify-start">
-                                    {ticket._id.substring(0, 5)+".."}
-                                </div>
-                                <div className="table-title basis-[12%]">
-                                    {ticket.title}
-                                </div>
-                                <div className="table-title basis-[20%]">
-                                    {ticket.description}
-                                </div>
-                                <div className="table-title basis-[20%]">
-                                    {ticket.assignee}
-                                </div>
-                                <div className="table-title basis-[5%]">
-                                    {ticket.ticketPriority}
-                                </div>
-                                <div className="table-title basis-[22%]">
-                                    {ticket.assignedTo}
-                                </div>
-                                <div className="table-title basis-[13%] justify-end mr-4">
-                                    {ticket.status}
-                                </div>
-                            </div>
-                        );
-                    })}
+                <div >
+                    {ticketState  && 
+                        <DataTable
+                        columns={columns}
+                        data={ticketState.ticketlist}
+                        expandableRows
+                        expandableRowsComponent={ExpandedComponent}
+                        customStyles={customStyles}
+		        />}
                 </div>
             </div>  
         </HomeLayout>

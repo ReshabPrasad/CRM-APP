@@ -27,7 +27,7 @@ function Usetickets(){
     }
 
     useEffect(()=>{
-            loadAllTickets();
+        loadAllTickets();
     },[authstate.token,searchParams.get("status")]);
     return [ticketState];
 }

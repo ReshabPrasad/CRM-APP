@@ -46,6 +46,17 @@ const ticketslice = createSlice({
         },
         resetTicketlist:(state)=>{
             state.ticketlist = state.downloadedTickets;
+        },
+        loadTickets:(state) =>{
+            state.downloadedTickets = [];
+            state.ticketlist = [];
+            state.ticketDistribution = {
+                open: 0,
+                inProgress: 0,
+                resolved: 0,
+                onHold: 0,
+                cancelled: 0
+            };
         }
     },
     extraReducers:(builder) => {
@@ -69,6 +80,6 @@ const ticketslice = createSlice({
 });
 
 
-export const {filterTickets,resetTicketlist} = ticketslice.actions;
+export const {filterTickets,resetTicketlist,loadTickets} = ticketslice.actions;
 
 export default ticketslice.reducer;
