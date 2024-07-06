@@ -11,7 +11,7 @@ const initialState = {
         open:0,
         inProgress:0,
         resolved:0,
-        onHold:0,
+        onhold:0,
         cancelled:0
     }
 };
@@ -42,6 +42,7 @@ const ticketslice = createSlice({
         filterTickets: (state,action) => {
             let status  = action.payload.status.toLowerCase();
             if(status == "in progress") status = "inProgress";
+            if(status=="on hold") status="onHold";
             state.ticketlist = state.downloadedTickets.filter((ticket) => (ticket.status==status));
         },
         resetTicketlist:(state)=>{

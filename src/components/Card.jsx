@@ -4,7 +4,7 @@ function Card({ children, fontColor="text-white", borderColor="border-error", di
 
     const navigate = useNavigate();
     function onCardClick(){
-        navigate(`/dashboard?status=${titleText}`)
+        navigate(`/dashboard?status=${titleText}`);
     }
     return (
         <div onClick = {onCardClick}className={`hover:cursor-pointer hover:scale-110 duration-300 border-b-8 ${borderColor} w-64 h-44 ${background} rounded-md flex flex-col justify-center items-center py-2`}>
