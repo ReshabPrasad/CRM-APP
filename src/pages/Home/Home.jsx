@@ -1,4 +1,5 @@
-
+import { ArcElement, Chart as ChartJS, Legend, Title, Tooltip } from "chart.js";
+import { Pie } from "react-chartjs-2";
 import { BsFillPencilFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { MdOutlineDoneAll } from "react-icons/md";
@@ -9,10 +10,28 @@ import Card from "../../components/Card";
 import Usetickets from "../../Hooks/UseTickets";
 import HomeLayout from "../../Layout/HomeLayout";
 
+
+ChartJS.register(ArcElement, Legend, Title, Tooltip);
+
+
 function Home(){
 
 
+
     const [ticketState]= Usetickets();
+
+    const pieChartData = {
+        labels : Object.keys(ticketState.ticketDistribution),
+        fontColor: "white",
+        datasets : [
+            {
+                label: "Status",
+                data : Object.values(ticketState.ticketDistribution),
+                backgroundColor: ["yellow","orange","purple","gray","white"],
+                borderColor:["yellow","orange","purple","gray","white"]
+            }
+        ]
+     };
       
        return(
        <HomeLayout>
@@ -68,6 +87,11 @@ function Home(){
                 <MdPending className='inline mr-2' />
             </Card> 
             </div>)}
+            <div className="justify-center flex items-center m-10 gap-10">
+            <div className="h-80 w-80">
+                <Pie data = {pieChartData}/>
+            </div>
+            </div>
         </HomeLayout>
     );
 }
