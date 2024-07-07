@@ -1,8 +1,10 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 
 
+import { useState } from 'react';
 import DataTable from 'react-data-table-component';
 
+import TicketDetailsModal from '../components/TicketDetailsModal';
 import useTickets from "../Hooks/UseTickets";
 import HomeLayout from "../Layout/HomeLayout";
 
@@ -12,7 +14,7 @@ const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pr
 function Dashboard() {
 
     const [ticketState] = useTickets();
-
+    const [ticketsdisplay,setticketsdisplay] = useState({});
 
     const columns = [
         {
@@ -93,12 +95,17 @@ function Dashboard() {
                 <div >
                     {ticketState  && 
                         <DataTable
+                        onRowClicked={(row) => { 
+                            document.getElementById("tickets_modal").showModal();
+                            setticketsdisplay(row);
+                        }}
                         columns={columns}
                         data={ticketState.ticketlist}
                         expandableRows
                         expandableRowsComponent={ExpandedComponent}
                         customStyles={customStyles}
 		        />}
+                <TicketDetailsModal tickets = {ticketsdisplay}/>
                 </div>
             </div>  
         </HomeLayout>
