@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 import axiosInstance from "../config/axiosInstance";
 
-function UserDetailsModal({users}){
+function UserDetailsModal({users ,resetTable}){
 
 
     const [userdisplay,setuserdisplay] = useState(users);
@@ -35,6 +35,7 @@ function UserDetailsModal({users}){
                 clientName:user.clientName,
                 userType:user.userdisplay
             });
+            resetTable();
         }
     }
   return (

@@ -83,7 +83,7 @@ function ListALLUsers(){
                         ></DataTable>
                     }
           </div>
-          <UserDetailsModal key = {userdisplay.email} users={userdisplay}/>
+          <UserDetailsModal key = {userdisplay.email} users={userdisplay} resetTable = {loadAllUsers}/>
         </HomeLayout>
     );
 }
