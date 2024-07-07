@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 
+import UserDetailsModal from "../../components/UserDetailsModal";
 import axiosInstance from "../../config/axiosInstance";
 import HomeLayout from "../../Layout/HomeLayout";
 
@@ -13,7 +14,8 @@ function ListALLUsers(){
             email: "",
             userType : "",
             userStatus : "",
-            clientName : ""
+            clientName : "",
+            userid : ""
         });
 
         const columns = [
@@ -71,7 +73,8 @@ function ListALLUsers(){
                                 email :row.email,
                                 userType :row.userType,
                                 userStatus : row.userStatus,
-                                clientName : row.clientName
+                                clientName : row.clientName,
+                                userid:row._id
                             });
                             document.getElementById('user_details_modal').showModal();}
                         }
@@ -80,20 +83,7 @@ function ListALLUsers(){
                         ></DataTable>
                     }
           </div>
-                <dialog id="user_details_modal" className="modal">
-                    <div className="modal-box text-bold">
-                        <h3 className="font-bold text-lg">User details</h3>
-                        <p className="py-4">Name : {userdisplay.name}</p>
-                        <p className="py-4">Email : {userdisplay.email}</p>
-                        <p className="py-4">User Type : {userdisplay.userType}</p>
-                        <p className="py-4">User Status : {userdisplay.userStatus}</p>
-                        <p className="py-4">Client Name : {userdisplay.clientName}</p>
-                        
-                    </div>
-                    <form method="dialog" className="modal-backdrop">
-                        <button>close</button>
-                    </form>
-                </dialog>
+          <UserDetailsModal key = {userdisplay.email} users={userdisplay}/>
         </HomeLayout>
     );
 }
