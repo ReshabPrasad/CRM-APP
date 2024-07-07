@@ -35,6 +35,27 @@ export const getAllticketsforTheUser = createAsyncThunk('getalltickets', async()
     }
 });
 
+
+export const updateticket = createAsyncThunk(`tickets/updateTicket`, async(ticket) =>{
+    try {
+        const response = axiosInstance.patch(`/ticket/${ticket._id}`,
+            ticket,
+            {
+            headers:{
+                'x-access-token' : localStorage.getItem('token')
+            },
+        });
+        toast.promise((response),{
+            success: "Successfully updated all the tickets",
+            loading: "Updating the tickets",
+            error: "Something went wrong"
+        });
+        return await response;
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 const ticketslice = createSlice({
     name:'ticket',
     initialState,
@@ -76,6 +97,28 @@ const ticketslice = createSlice({
             tickets.forEach(ticket=>{
                 state.ticketDistribution[ticket.status]=state.ticketDistribution[ticket.status]+1;
             });  
+        })
+        .addCase(updateticket.fulfilled,(state,action) => {
+            const updatedticket = action.payload.data.result;
+            state.ticketlist = state.ticketlist.map((ticket) => {
+                if(ticket._id==updatedticket._id)return updatedticket;
+                return ticket;
+            });
+            state.downloadedTickets = state.ticketlist.map((ticket) => {
+                if(ticket._id==updatedticket._id)return updatedticket;
+                return ticket;
+            });
+            state.ticketDistribution = {
+                open:0,
+                inProgress:0,
+                resolved:0,
+                onHold:0,
+                cancelled:0
+            };
+            state.downloadedTickets.forEach(ticket=>{
+                state.ticketDistribution[ticket.status]=state.ticketDistribution[ticket.status]+1;
+            });  
+
         });
     }
 });

@@ -105,7 +105,7 @@ function Dashboard() {
                         expandableRowsComponent={ExpandedComponent}
                         customStyles={customStyles}
 		        />}
-                <TicketDetailsModal tickets = {ticketsdisplay}/>
+                <TicketDetailsModal tickets = {ticketsdisplay} key={ticketsdisplay._id}/>
                 </div>
             </div>  
         </HomeLayout>
