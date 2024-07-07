@@ -5,6 +5,7 @@ import Signup from "../pages/auth/Signup";
 import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home/Home";
 import ListALLUsers from "../pages/ListAllUsers/ListAllUsers";
+import CreateTickets from "../pages/ListAllUsers/Tickets/CreateTickets";
 import AuthRoutes from "./AuthRoutes";
 
 function MainRoutes(){
@@ -14,6 +15,7 @@ function MainRoutes(){
             <Route path ='/signup' element = {<Signup/>}/>
             <Route path ='/' element = {<Home/>}/>
             <Route path ='/dashboard' element = {<Dashboard/>}/>
+            <Route path = '/ticket/create' element = {<CreateTickets/>}/>
             <Route element={<AuthRoutes allowedListedRoles={["admin"]}/>}>
                 <Route path = "/users" element = {<ListALLUsers/>}></Route>
             </Route>

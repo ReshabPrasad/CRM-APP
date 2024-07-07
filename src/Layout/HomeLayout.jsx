@@ -39,6 +39,8 @@ function HomeLayout({children}){
 
                     {authState.role=="admin" && <li><Link to="/users">All users</Link></li>}
 
+                    {authState.isLoggedIn && <li><Link to="/ticket/create">Create ticket</Link></li>}
+
                     <li className="absolute bottom-8 w-3/4">
                         <div className="w-full flex justify-center items-center gap-16">
                             {

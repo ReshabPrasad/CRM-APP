@@ -17,8 +17,9 @@ function TicketDetailsModal({tickets}){
         });
     }
     async function handleSubmit(){
-        const response = await dispatch(updateticket(currentticket));
-        console.log(response);
+        await dispatch(updateticket(currentticket));
+        const modal = document.getElementById("tickets_modal");
+        modal.close();
     }
 
     return (
@@ -52,8 +53,8 @@ function TicketDetailsModal({tickets}){
                         <option value="open" selected = {currentticket.status=="open"}>open</option>
                         <option value="inprogress" selected = {currentticket.status=="inprogress"}>inprogress</option>
                         <option value="onHold" selected = {currentticket.status=="onHold"}>onHold</option>
-                        <option value="resolved" selected = {currentticket.status>="resolved"}>resolved</option>
-                        <option value="cancelled" selected = {currentticket.status>="cancelled"}>cancelled</option>
+                        <option value="resolved" selected = {currentticket.status=="resolved"}>resolved</option>
+                        <option value="cancelled" selected = {currentticket.status=="cancelled"}>cancelled</option>
                     </select>
                 </h1>
 
