@@ -68,12 +68,12 @@ function UseCharts(){
             },
             {
                 label: "In Progress Tickets Data",
-                data : Object.values(barticketsdata.opentickets),
+                data : Object.values(barticketsdata.inProgresstickets),
                 backgroundColor: 'rgb(53, 162, 235)',
             },
             {
                 label: "Resolved Tickets Data",
-                data : Object.values(barticketsdata.opentickets),
+                data : Object.values(barticketsdata.resolvedtickets),
                 backgroundColor: 'rgb(245, 205, 95)',
             },
 

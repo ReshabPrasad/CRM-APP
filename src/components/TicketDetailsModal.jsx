@@ -51,7 +51,7 @@ function TicketDetailsModal({tickets}){
                     Status:
                     <select name="status" className="mx-2 p-1" onChange={handleTicketChange}>
                         <option value="open" selected = {currentticket.status=="open"}>open</option>
-                        <option value="inprogress" selected = {currentticket.status=="inprogress"}>inprogress</option>
+                        <option value="inProgress" selected = {currentticket.status=="inProgress"}>inProgress</option>
                         <option value="onHold" selected = {currentticket.status=="onHold"}>onHold</option>
                         <option value="resolved" selected = {currentticket.status=="resolved"}>resolved</option>
                         <option value="cancelled" selected = {currentticket.status=="cancelled"}>cancelled</option>

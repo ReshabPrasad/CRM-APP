@@ -19,6 +19,7 @@ function CreateTickets() {
         status : "open",
         ticketPriority:3,
         clientName:authstate.data.clientName,
+        assignedTo:""
     });
 
     function handleFormChange(e){

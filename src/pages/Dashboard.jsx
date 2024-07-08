@@ -21,62 +21,72 @@ function Dashboard() {
             name: 'Ticket Id',
             selector: row => row._id,
             reorder: true,
+            width: '120px', // adjusted column width
         },
         {
             name: 'Title',
             selector: row => row.title,
             reorder: true,
+            width: '200px', // adjusted column width
         },
         {
             name: 'Description',
             selector: row => row.description,
             reorder: true,
+            width: '300px', // adjusted column width
         },
         {
             name: 'Reporter',
             selector: row => row.assignedTo,
             reorder: true,
+            width: '150px', // adjusted column width
         },
         {
             name: 'Priority',
             selector: row => row.ticketPriority,
             reorder: true,
             sortable: true,
+            width: '120px', // adjusted column width
         },
         {
             name: 'Assignee',
             selector: row => row.assignee,
             reorder: true,
+            width: '150px', // adjusted column width
         },
         {
             name: 'Status',
             selector: row => row.status,
             reorder: true,
             sortable: true,
-
+            width: '120px', // adjusted column width
         }
     ];
 
     const customStyles = {
         rows: {
             style: {
-                minHeight: '72px', // override the row height
-                fontSize: '15px'
+                minHeight: '48px', // decreased the row height
+                fontSize: '14px', // adjusted font size
             },
         },
         headCells: {
             style: {
-                paddingLeft: '8px', // override the cell padding for head cells
-                paddingRight: '8px',
+                paddingLeft: '6px', // decreased the cell padding for head cells
+                paddingRight: '6px',
+                fontSize: '14px', // adjusted font size
             },
         },
         cells: {
             style: {
-                paddingLeft: '8px', // override the cell padding for data cells
-                paddingRight: '8px',
+                paddingLeft: '6px', // decreased the cell padding for data cells
+                paddingRight: '6px',
+                fontSize: '14px', // adjusted font size
             },
         },
     };
+
+
 
       
 
@@ -85,9 +95,9 @@ function Dashboard() {
 
     return (
         <HomeLayout>
-            <div className="min-h-[90vh] flex flex-col items-center justify-center gap-2">
+            <div className="min-h-[90vh] flex flex-col items-center justify-center gap-2 px-4">
 
-                <div className="bg-yellow-500 w-full text-black text-center text-3xl py-4 font-bold hover:bg-yellow-400 transition-all ease-in-out duration-300">
+                <div className="bg-yellow-500 w-full justify-center mt-4 text-black text-center text-3xl py-4 font-bold hover:bg-yellow-400 transition-all ease-in-out duration-300">
                 Tickets Records 
                 </div>
 
@@ -105,7 +115,7 @@ function Dashboard() {
                         expandableRowsComponent={ExpandedComponent}
                         customStyles={customStyles}
 		        />}
-                <TicketDetailsModal tickets = {ticketsdisplay} key={ticketsdisplay._id}/>
+                <TicketDetailsModal tickets = {ticketsdisplay} key={ticketsdisplay.status}/>
                 </div>
             </div>  
         </HomeLayout>

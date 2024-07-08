@@ -155,13 +155,11 @@ const ticketslice = createSlice({
         })
         .addCase(updateticket.fulfilled,(state,action) => {
             const updatedticket = action.payload.data.result;
-            state.ticketlist = state.ticketlist.map((ticket) => {
-                if(ticket._id==updatedticket._id)return updatedticket;
-                return ticket;
+            state.downloadedTickets = state.downloadedTickets.map((ticket) => {
+                return ticket._id === updatedticket._id ? updatedticket : ticket;
             });
-            state.downloadedTickets = state.ticketlist.map((ticket) => {
-                if(ticket._id==updatedticket._id)return updatedticket;
-                return ticket;
+            state.ticketlist = state.ticketlist.map((ticket) => {
+                return ticket._id === updatedticket._id ? updatedticket : ticket;
             });
             state.ticketDistribution = {
                 open:0,
@@ -178,6 +176,7 @@ const ticketslice = createSlice({
         .addCase(createticket.fulfilled,(state,action) => {
             if(action?.payload?.data==undefined)return;
             const newticket = action.payload.data;
+            console.log(action);
             state.downloadedTickets.push(newticket);
             state.ticketlist  = state.downloadedTickets;
             state.ticketDistribution = {
