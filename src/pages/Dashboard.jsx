@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import DataTable from 'react-data-table-component';
+import { useSelector } from 'react-redux';
 
 import TicketDetailsModal from '../components/TicketDetailsModal';
 import useTickets from "../Hooks/UseTickets";
@@ -90,7 +91,7 @@ function Dashboard() {
 
       
 
-    
+    const authstate = useSelector((state)=>state.auth);
 
 
     return (
@@ -115,7 +116,7 @@ function Dashboard() {
                         expandableRowsComponent={ExpandedComponent}
                         customStyles={customStyles}
 		        />}
-                <TicketDetailsModal tickets = {ticketsdisplay} key={ticketsdisplay.status}/>
+                {!(authstate.role=="customer") && <TicketDetailsModal tickets = {ticketsdisplay} key={ticketsdisplay.status}/>}
                 </div>
             </div>  
         </HomeLayout>

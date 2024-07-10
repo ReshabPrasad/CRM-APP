@@ -51,7 +51,7 @@ function HomeLayout({children}){
                             </>): 
                             (<>
                             <button onClick={onLogout} className='bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700 w-full'>Logout</button>
-                            <Link><button className='bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-700 w-full '>Profile</button></Link>
+                            <Link to = "/profile"><button className='bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-700 w-full '>Profile</button></Link>
                             </>)
                         }
                         </div>
